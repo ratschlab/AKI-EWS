@@ -1,0 +1,54 @@
+
+parse_gin_args.gin_configs = {
+
+    # ================= INPUT PATHS ======================================================================================================
+
+    # General data table from the original DBMS
+    "general_data_table_path": "../../data/raw_data/hirid2/static.h5",
+
+    # Included PID base list
+    "pid_included_list": "../../data/exp_design/included_pids_hirid2.tsv",
+
+    # K-anonymity descriptor by Alizee
+    "kanonym_pid_list": "/cluster/work/grlab/clinical/hirid2/physionet_export/preview/testset_123years/pids_list.csv", 
+
+    # ================= OUTPUT PATHS ======================================================================================================
+
+    # Temporal data split descriptor (binary format) for the Bern data-set v8
+    "temporal_data_split_binary_path": "../../data/exp_design/temp_splits_hirid2.pickle",
+
+    # ================= ARGUMENTS ======================================================================================================
+
+    # Endpoint for which to generate splits
+    "endpoint": "renal",
+
+    # Debugging mode, no output to file-system
+    "debug_mode": False,
+
+    # Random seed for generation of splits
+    "random_state": 2022,
+
+    # Column to use to get the K-anonym data split
+    "test_set_col": "test_1year",
+
+    # Train/validation split strategy, one of (random, temporal)
+    "train_val_split_strategy": "temporal",
+
+    # Restrict to patients in the range 2010-2018
+    "restrict_2010_2018": False,
+
+    # Restrict to patients with LOS>1 day
+    "restrict_los_gt_1_day": False,
+
+    # Restrict to a matching random population to LOS >1day
+    "match_los_gt_1_day": False,
+
+    # Train ratio for temporal splits
+    "temporal_train_ratio": 0.8,
+
+    # Val ratio for temporal splits
+    "temporal_val_ratio": 0.2,
+
+}
+    
+    

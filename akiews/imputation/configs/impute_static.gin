@@ -1,0 +1,33 @@
+
+parse_gin_args.gin_configs = {
+
+    # ================= INPUT PATHS ======================================================================================================
+
+    # Temporal split descriptor
+    "temporal_data_split_binary_path": "../../data/exp_design/temp_splits_hirid2.pickle",
+
+    # Static information
+    "static_info_path": "../../data/raw_data/hirid2/static.h5",
+
+    # ================= OUTPUT PATHS ======================================================================================================
+
+    # Output directory for imputed data
+    "imputed_reduced_path": "../../data/imputed/noimpute_hirid2/reduced",
+
+    # ================= ARGUMENTS ======================================================================================================
+
+    # HDF compression options
+    "hdf_comp_level": 5,
+    "hdf_comp_alg": "blosc:lz4",
+
+    # Do not impute, that is leave NAN for missing values in the frame
+    "no_impute": True,
+
+    # Debugging options
+    "debug_mode": False,
+
+    # Database to process
+    "database": "hirid",
+
+    "SPLIT_MODES": ["temporal_2","temporal_3","temporal_4","temporal_5"]
+}

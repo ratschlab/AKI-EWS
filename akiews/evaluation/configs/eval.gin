@@ -1,0 +1,48 @@
+parse_gin_args.gin_configs = {
+
+    # ================= INPUT PATHS ======================================================================================================
+
+    # Predictions base directory
+    "predictions_dir": "../../data/predictions",
+
+    # PID batch map
+    "hirid_pid_map_path": "../../data/exp_design/hirid2_chunking_100.pickle",
+
+    # Temporal split descriptor
+    "bern_temporal_split_path": "../../data/exp_design/temp_splits_hirid2.pickle",
+
+    # Endpoint path to load
+    "endpoint_path": "../../data/endpoints/hirid2_endpoints", 
+
+    # ================= OUTPUT PATHS ======================================================================================================    
+
+    # Directory to store results and raw data of plots
+    "eval_table_dir": "../../data/evaluation/time_point_based",
+    
+    # ================= ARGUMENTS ======================================================================================================
+
+    # List of tasks (joint)
+    
+    "task_keys": [('Label_hirid_merged_24h_deleted_4h_WorseStateFromZeroEVAL0To48Hours_simple_features_lightgbm',None,"hirid","temporal_1",False),
+                  ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZeroEVAL0To48Hours_complex_features_lightgbm',None,"hirid","temporal_1",False)],
+    
+    # Splits on which to evaluate the point-estimate
+    "eval_splits": ["temporal_1","temporal_2","temporal_3","temporal_4","temporal_5"],
+
+    # Also load Thomas' predictions and check them on same patient
+    "load_thomas_aux_pred": False,
+
+    # Custom ROC/PR curves
+    "custom_roc_pr_curves": False,
+    
+    # Debugging options
+    "verbose": False,
+    "debug_mode": False,
+
+    # Invert scores
+    "invert_scores": False,
+
+    # Auto-sense the correct hour
+    "autosense_eval_hour": False
+
+}

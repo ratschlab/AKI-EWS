@@ -1,0 +1,126 @@
+
+parse_gin_args.gin_configs = {
+
+    # ================= INPUT PATHS ======================================================================================================
+
+    # Path of the patient ID batch map
+    "pid_map_path": "../../data/exp_design/hirid2_chunking_100.pickle",
+
+    # Path of temporal split descriptor
+    "temporal_split_path": "../../data/exp_design/temp_splits_hirid2.pickle",
+
+    # Path of imputed data
+    "imputed_path": "../../data/imputed/noimpute_hirid2",
+
+    # Path of label data to use
+    "label_path": "../../data/labels/hirid2_labels",
+
+    # Meta-variable encoding map
+    "meta_varenc_map_path": "../../data/misc/meta_varencoding_map_v8.pickle",
+
+    # Pre-computed variable statistics on the training set
+    "meta_varprop_map_path": "../../data/imputed/imputation_parameters",
+    
+    # Pharma acting period lookup dict
+    "pharma_acting_period_map_path": "../../data/misc/pharma_acting_period_meta.npy",
+    
+    # HiRID v8 schema dict
+    "hirid_v8_dict": "../../data/misc/hirid_v8_schema.pickle",
+
+    # List of variables on which to compute complex features
+    "list_special_variables": "../../data/var_lists/union_28_variables_FEATURES.txt",
+
+    # Endpoint data-frame to use to load special variables from resp project
+    "endpoint_path": None,
+
+    # HMM features to load from Bowen (Likely outdated, to check...) (NOT USED CURRENTLY)
+    "bowen_hmm_path": None,
+
+    # Thomas grid compat path (NOT USED)
+    "thomas_grid_compat_path": "/cluster/work/grlab/clinical/hirid2/research/5b_imputed_renal/v8_compat_thomas/reduced/point_est",
+
+    # ================= OUTPUT PATHS ======================================================================================================
+
+    # Log directory
+    "log_dir": "/cluster/home/mhueser/log_files/icu_score_renal",
+
+    # Directory where to store features
+    "output_features_path": "../../data/ml_input/hirid2_features",
+
+    # ================= ARGUMENTS ======================================================================================================
+
+    # Endpoint to compute features for?
+    "endpoint": "kidney",
+
+    # Intersect Thomas grid, compatibility
+    "compat_thomas_grid": False,
+
+    # Cluster or interactive mode?
+    "run_mode": "INTERACTIVE",
+
+    # Attach Bowen HMM features?
+    "attach_bowen_hmm_features": False,
+    
+    # Split on which to generate features?
+    "split_key": "temporal_1",
+    
+    # Data mode
+    "data_mode": "reduced", 
+
+    # Base period of the grid in seconds
+    "impute_grid_unit_secs": 300,
+
+    # Batch to generate features for
+    "batch_idx": 50,
+
+    # Debug mode
+    "debug_mode": False,
+
+    # HDF compression settings
+    "hdf_comp_level": 5,
+    "hdf_comp_alg": "blosc:lz4",
+
+    # Verbosity level
+    "verbose": True,
+
+    # Are finite values expected or NAN allowed?
+    "missing_values_mode": "finite",
+    
+    # Number of hours to skip at beginning of stay
+    "min_history_hours": 0.5,
+
+    # Large value to assign to measurement feature if no previous measurement
+    "symbolic_max_time_ms": 43200,
+
+    # Attach circEWS derived quantities as features
+    "attach_circews_labels": False,
+    "attach_circews_endpoints": False,
+    "attach_circews_preds": False,
+
+    # Compute complex features on a subset of variables?
+    "add_complex_features": True,
+
+    # History length percentile to use as horizons
+    "HIST_LENGTH_PCT": [(20,10.8), (40,25.6), (60,62.8), (80,156.3)],
+
+    # Endpoint columns to attach as plain values
+    "EP_COLS": [],
+
+    # Annotated abnormality levels
+    "SEVERITY_LEVELS": {"vm58": [(30,40),(40,60),(60,100)], # FiO2
+                        "vm20": [(90,94),(86,90),(0,86)], # SpO2
+                        "vm23": [(2,4),(4,8),(8,12)], # Supplemental oxygen
+                        "vm141": [(90,94),(86,90),(0,86)], # SaO2
+                        "vm140": [(62,80),(55,62),(0,55)], # PaO2
+                        "vm309": [(21,40),(40,60),(60,100)], # Supplemental FiO2 %
+                        "vm27": [(3,3),(2,2),(1,1)], # GCS Augenöffnen
+                        "vm17": [(-10000,-0.2), (0.2,0.4), (0.4, 10000)], # ST2
+                        "vm62": [(30,40),(40,45),(45,10000)], # Spitzendruck
+                        "vm25": [(4,4),(3,3),(1,2)], # GCS Antwort
+                        "vm28": [(2,2),(-2,-2),(-5,-3),(3,4)], # RASS
+                        "vm26": [(5,10000), (3,4), (1,2)], # GCS Motor
+                        "vm22": [(12,20), (20,25), (25,10000)], # Respiratory rate
+                        "vm59": [(6,7), (7,8), (8,10000)], # PEEP
+                        "fio2_estimated": [(30,40),(40,60),(60,100)]}
+
+}

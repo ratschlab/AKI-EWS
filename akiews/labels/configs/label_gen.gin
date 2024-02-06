@@ -1,0 +1,76 @@
+
+parse_gin_args.gin_configs = {
+
+    # ================= INPUT PATHS ======================================================================================================
+
+    # Splits of the data
+    "temporal_data_split_binary_renal": "../../data/exp_design/temp_splits_hirid2.pickle",
+
+    # Binary chunking maps
+    "pid_batch_map_binary": "../../data/exp_design/hirid2_chunking_100.pickle",
+    
+    # Imputed dir
+    "imputed_dir": "../../data/imputed/noimpute_hirid2",
+    
+    # Endpoint dir
+    "endpoint_dir": "../../data/endpoints",
+
+    # ================= OUTPUT PATHS ======================================================================================================
+
+    # Output location for kidney failure labels
+    "label_dir": "../../data/labels/hirid2_labels",
+
+    # Logging dir
+    "log_dir": "/cluster/home/mhueser/log_files/icu_score_renal",
+    
+    # ================= ARGUMENTS ======================================================================================================
+
+    # Should the code be run in cluster mode?
+    "run_mode": "INTERACTIVE",
+
+    # Split for which to produce labels
+    "split_key": "temporal_1",
+
+    # On which endpoint to generate labels?
+    "endpoint": "renal",
+
+    # Load extra drug cols
+    "load_extra_drug_cols": False,
+
+    # Verbose
+    "verbose": True,
+
+    # Grid information
+    "grid_step_seconds": 300.0,
+
+    # Batch index to process
+    "batch_idx": 50,
+
+    # Label data-set ID
+    "label_dset_id": "data",
+
+    # HDF compression options
+    "hdf_comp_level": 5,
+    "hdf_comp_alg": "blosc:lz4",
+    
+    # Debugging
+    "debug_mode": False,
+
+    # Data-frame keys
+    "abs_datetime_key": "AbsDatetime",
+    "rel_datetime_key": "RelDatetime",
+    "patient_id_key": "PatientID",
+
+    # Prediction horizons for which to compute labels
+    "pred_horizons": [(0,6),(0,12),(0,18),(0,24),(0,32),(0,48),(0,60),(0,72)],
+
+    # Endpoint versions that should be loaded and for which we should produce all labels?
+    "endpoint_versions": ["hirid_merged_24h_deleted_4h"]
+    
+}
+    
+
+    
+    
+    
+

@@ -1,0 +1,47 @@
+
+parse_gin_args.gin_configs = {
+
+    # ================= INPUT PATHS ======================================================================================================
+
+    # Script to dispatch
+    "compute_script_path": "/cluster/home/mhueser/git/projects/2022/kidnews_public/kidnews/labels/label_gen.py",
+
+    # Gin config of script
+    "script_gin_config": "/cluster/home/mhueser/git/projects/2022/kidnews_public/kidnews/labels/configs/label_gen.gin",
+
+    # ================= OUTPUT PATHS ======================================================================================================
+
+    # Logging dir
+    "log_dir": "/cluster/home/mhueser/log_files/icu_score_renal",
+
+    # Label directory
+    "label_dir": "../../data/labels/hirid2_labels",
+
+    # ================= ARGUMENTS ======================================================================================================
+
+    # Number of compute hours to dispatch
+    "compute_n_hours": 4,
+
+    # Number of compute cores
+    "compute_n_cores": 1, 
+
+    # Mem limit
+    "compute_mem": 5000,
+
+    # Debugging
+    "dry_run": False,
+    "debug_mode": False,
+    
+    # Logging
+    "preserve_logs": True,
+
+    # Endpoint selection
+    "endpoint": "renal",
+
+    # Splits for which to generate labels
+    "SPLIT_MODES": ["temporal_1"],
+
+    # Maximum batch to process
+    "BATCHES": 100,
+
+}

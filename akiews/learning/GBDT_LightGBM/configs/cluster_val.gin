@@ -1,0 +1,120 @@
+
+parse_gin_args.gin_configs = {
+    
+    # ================= INPUT PATHS ======================================================================================================
+
+    # Script to dispatch
+    "compute_script_path": "/cluster/home/mhueser/git/projects/2022/kidnews_public/kidnews/learning/learning_serial.py",
+
+    # GIN base config file of script
+    "script_gin_file": "/cluster/home/mhueser/git/projects/2022/kidnews_public/kidnews/learning/configs/validation.gin",
+
+    # ================= OUTPUT PATHS ======================================================================================================
+
+    # Predictions directory
+    "pred_dir": "../../data/predictions",
+
+    # Logging dir
+    "log_dir": "/cluster/home/mhueser/log_files/icu_score_renal",
+
+    # ================= ARGUMENTS ======================================================================================================
+
+    # Splits to process
+
+    "SPLIT_CONFIGS": [("temporal_1","random_1"),
+                      ("temporal_2","random_1"),
+                      ("temporal_3","random_1"),
+                      ("temporal_4","random_1"),                                            
+                      ("temporal_5","random_1")],
+
+    # Hosts to avoid for running the jobs
+    "bad_hosts": [],
+
+    # External validation mode
+    "ext_val_mode": "validation",
+
+    # Tasks to process
+    
+    # "ALL_TASKS": [('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_From48Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At0Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At1Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At2Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At3Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At4Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At5Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At6Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At7Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At8Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At9Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At10Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At11Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At12Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At13Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At14Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At15Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At16Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At17Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At18Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At19Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At20Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At21Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At22Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At23Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At24Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At25Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At26Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At27Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At28Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At29Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At30Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At31Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At32Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At33Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At34Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At35Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At36Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At37Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At38Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At39Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At40Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At41Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At42Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At43Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At44Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At45Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At46Hours',None),
+    #               ('Label_hirid_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At47Hours',None)],
+    
+    "ALL_TASKS": [("Label_hirid_merged_24h_deleted_4h_WorseStateFromZeroEVAL0To48Hours",None)],
+    
+    # Resources to request (32GB for separate tasks, 128 GB for joint tasks)
+    "mbytes_per_job": 128000,
+    "hours_per_job": 24,
+    "num_cpu_cores": 1,
+
+    # Debugging settings
+    "dry_run": False,
+    "debug_mode": False,
+    "random_seed": 2022,
+    "preserve_logs": True,
+
+    # Sub-sampling of training data
+    "1percent_sample": False,
+
+    # Machine learning model
+    "ml_model": "lightgbm",
+    
+    "use_catboost": False,
+    "decision_tree_baseline": False,
+    "decision_tree_mode": False,
+    "logreg_mode": False,
+    "mlp_mode": False,
+
+    # Feature selection
+    #"col_desc": "extval_transfer_simple_features",
+    "col_desc": "extval_transfer_complex_features",    
+
+    # Hyperparameter search
+    "hp_grid_size": 20,
+
+}

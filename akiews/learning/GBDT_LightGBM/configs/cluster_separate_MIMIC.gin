@@ -1,0 +1,72 @@
+
+parse_gin_args.gin_configs = {
+    
+    # ================= INPUT PATHS ======================================================================================================
+
+    # Script to dispatch
+    "compute_script_path": "/cluster/home/mhueser/git/projects/2022/kidnews_public/kidnews/learning/learning_serial.py",
+
+    # GIN base config file of script
+    "script_gin_file": "/cluster/home/mhueser/git/projects/2022/kidnews_public/kidnews/learning/configs/learning_separate_MIMIC.gin",
+
+    # ================= OUTPUT PATHS ======================================================================================================
+
+    # Predictions directory
+    "pred_dir": "../../data/predictions",
+
+    # Logging dir
+    "log_dir": "/cluster/home/mhueser/log_files/icu_score_renal",
+
+    # ================= ARGUMENTS ======================================================================================================
+
+    # Splits to process
+    
+    #"SPLIT_CONFIGS": [("temporal_1","random_1"), 
+    #                 ("temporal_1","random_2"),
+    #                 ("temporal_1","random_3"),
+    #                 ("temporal_1","random_4"),
+    #                 ("temporal_1","random_5")],
+
+    "SPLIT_CONFIGS": [("temporal_1","random_4")],
+
+    # Hosts to avoid for running the jobs
+    "bad_hosts": [],
+
+    # External validation mode
+    "ext_val_mode": "retrain",
+
+    # Tasks to process
+    "ALL_TASKS": [('Label_mimic_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At5Hours',None),
+                  ('Label_mimic_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At7Hours',None),
+                  ('Label_mimic_merged_24h_deleted_4h_WorseStateFromZero0To48Hours_At8Hours',None)],
+    
+    # Resources to request (32GB for separate tasks, 128 GB for joint tasks)
+    "mbytes_per_job": 64000,
+    "hours_per_job": 24,
+    "num_cpu_cores": 1,
+
+    # Debugging settings
+    "dry_run": False,
+    "debug_mode": False,
+    "random_seed": 2022,
+    "preserve_logs": True,
+
+    # Sub-sampling of training data
+    "1percent_sample": False,
+
+    # Machine learning model
+    "ml_model": "lightgbm",
+    
+    "use_catboost": False,
+    "decision_tree_baseline": False,
+    "decision_tree_mode": False,
+    "logreg_mode": False,
+    "mlp_mode": False,
+
+    # Feature selection
+   "col_desc": "separate_model_simple_features_MIMIC",
+
+    # Hyperparameter search
+    "hp_grid_size": 20,
+
+}

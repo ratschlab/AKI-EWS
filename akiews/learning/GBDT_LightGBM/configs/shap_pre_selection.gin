@@ -1,0 +1,281 @@
+
+# Config for pre-selecting candidate set of important variables using SHAP method
+
+parse_gin_args.gin_configs = {
+
+    # ================= INPUT PATHS ======================================================================================================
+
+    # Features / labels to use
+    "mimic_ml_input_dir": "../../data/ml_input/mimic_features",
+    "bern_ml_input_dir": "../../data/ml_input/hirid2_features",
+
+    # HiRID v8 schema dict
+    "hirid_v8_dict": "../../data/misc/hirid_v8_schema.pickle", 
+
+    # ML dataset to use
+    "mimic_ml_dset_dir": "../../data/ml_dset/mimic_dset",
+    "bern_ml_dset_dir": "../../data/ml_dset/hirid2_dset",
+
+    # Imputed data to use
+    "mimic_imputed_dir": "../../data/imputed/noimpute_mimic",
+    "bern_imputed_dir": "../../data/imputed/noimpute_hirid2",
+
+    # Path of batch map for Bern data
+    "mimic_pid_batch_map_path": "../../data/exp_design/mimic_chunking_50.pickle",
+    "bern_pid_batch_map_path": "../../data/exp_design/hirid2_chunking_100.pickle",
+
+    # Temporal split descriptor
+    "mimic_temporal_data_split_path": "../../data/exp_design/random_splits_mimic.pickle",
+    "bern_temporal_data_split_path": "../../data/exp_design/temp_splits_hirid2.pickle",
+
+    # Variable encoding dictionary of HiRID-II
+    "varencoding_dict_path": "../../misc/meta_varencoding_map_v8.pickle",
+
+    # In case variables shall be restricted, list to use
+    "var_restrict_path": None,
+
+    # In case features shall be restricted, list to use (NOT USED)
+    "feat_restrict_path": None,
+
+    # ================= OUTPUT PATHS ======================================================================================================
+
+    # Path where to store predictions
+    "output_dir": "../../data/predictions",
+
+    # Auxiliary ML input store location
+    "bern_ml_input_logging": "../../data/tests/matthias_hirid2_features.pkl",
+    "mimic_ml_input_logging": "../../data/tests/matthias_mimic_features.pkl",
+
+    # Logging directory
+    "log_dir": "/cluster/home/mhueser/log_files/icu_score_renal",
+
+    # ================= ARGUMENTS ======================================================================================================
+
+    # Endpoint to process
+    "endpoint": "renal",
+    
+    # Hyperparameter search grid for LightGBM (use large grid for small sample problems)
+
+    # Small sample problems (separate estimators)
+    #"GBM_HP_GRID": {"n_estimators": [5000], "num_leaves": [8,16,32,64,128], "learning_rate": [0.025], 
+    #                "colsample_bytree": [0.33,0.66], "rowsample_bytree": [0.33,0.66]},
+
+    # Large-sample problems
+    "GBM_HP_GRID": {"n_estimators": [5000], "num_leaves": [32], "learning_rate": [0.05], 
+                    "colsample_bytree": [0.5], "rowsample_bytree": [0.5]},
+
+    # Constant hyperparameters for LightGBM (use 50 for small sample problems, 1000 for large sample)
+    "lgbm_min_child_samples": 1000,
+    "lgbm_is_unbalanced": False,
+
+    # HP grid for ExtraTrees
+    "ETREES_HP_GRID": {"n_estimators": [100,1000,10000]},
+
+    # HP grid for random forest
+    "RFOREST_HP_GRID": {"n_estimators": [200,400,600,800]}, 
+
+    # HP grid to use for LGBM in case of forward/backward variable selection?
+    "GBM_HP_GRID_VARSEARCH": {"n_estimators": [5000], "num_leaves": [64], "learning_rate": [0.05], 
+                              "colsample_bytree": [0.75], "rowsample_bytree": [0.75]},
+
+    # Hyperparameter search grid for a single decision tree
+    "TREE_GRID": {"n_estimators": [1], "num_leaves": [32], "learning_rate": [0.05]},
+
+    # Hyperparameter search grid for logistic regression
+    "LR_GRID": {"alpha": [1.0,0.1,0.01,0.001,0.0001,0.00001]},
+
+    # Standard alpha to use for log-reg
+    "logreg_alpha": 0.1,
+
+    # HP search grid for MLP classifier
+    "MLP_GRID": {"hidden_layer_size": [5,10,20], "learning_rate": [0.001], "alpha": [1.0,0.1,0.01,0.001,0.0001,0.00001]},
+
+    # Machine learning model to use
+    # Possible options {lightgbm, mlp, logreg, extratrees, tree, rforest}
+    "ml_model": "lightgbm",
+    
+    # Split to use
+    #"bern_split_key": "temporal_1",
+    "bern_split_key": "temporal_2",
+    #"bern_split_key": "temporal_3",
+    #"bern_split_key": "temporal_4",
+    #"bern_split_key": "temporal_5",
+    
+    "mimic_split_key": "random_1",
+
+    # External validation mode
+    "ext_val_mode": "internal",
+
+    # Should we produce predictions everywhere?
+    "pred_everywhere": False,
+
+    # Mean-impute missing values (needed for Sklearn models)
+    "mean_impute_nans": False,
+
+    # Scale-data (needed for LogReg/MLP)
+    "scale_encode_data": False,
+
+    # Only encode data (needed for Sklearn models)
+    "encode_data": False,
+
+    # Only plain features (in variable selection do not use complex features)
+    "only_plain_vars": True,
+
+    # Remove reltime
+    "remove_reltime": False,
+
+    # Filter out constant features
+    "filter_low_variance": False,
+
+    # Split name if random split should be loaded?
+    "special_development_split": "NONE",
+
+    # Label to fit in binary classification
+    "label_key": "Label_hirid_merged_24h_deleted_4h_WorseStateFromZeroEVAL0To48Hours",
+
+    # Evaluation label key (usually identical to training label key)
+    "eval_label_key": None,
+
+    # Feature column set to use
+    "column_set": "shap_pre_selection",
+    
+    # Attach circEWS labels as features?
+    "attach_circews_labels": False,
+
+    # Restrict the variable set to get a compact model?
+    "restrict_variables": False,
+
+    # Restrict the features to a pre-specified list
+    "restrict_feats": False,
+    
+    # HDF compression settings
+    "hdf_comp_alg": "blosc:lz4",
+    "hdf_comp_level": 5,
+
+    # Debugging
+    "debug_mode": False,
+    "random_state": 2022,
+    "profile_report": False,
+    "systrace_mode": False,
+
+    # Execution mode
+    "run_mode": "INTERACTIVE",
+
+    # Should one tree be plotted and saved?
+    "plot_tree": False,
+    
+    # Library settings for GBM
+    "use_xgboost": False,
+    "use_catboost": False,
+
+    # Use a test set from another split than the main split?
+    "special_test_set": "NONE",
+    
+    # Use only basic features that are available for all variables?
+    "only_base_feats": False,
+
+    # Should forward or backward variable selection be run?
+    "select_variables_forward": False,
+    "select_variables_backward": False,
+
+    # Run training on smaller subsample?
+    "negative_subsampling": False,
+    "50percent_sample": False,
+    "50percent_sample_train": False,
+    "25percent_sample_train": False,
+    "25percent_sample": False,
+    "20percent_sample": False,
+    "10percent_sample": False,
+    "5percent_sample": False,
+    "1percent_sample": False,
+    "verysmall_sample": False,
+
+    # Compat thomas relabel static
+    "compat_thomas_relabel_static": True,
+
+    # Restrict to some year in the training set?
+    "special_year": -1,
+
+    # Save the ML input just before the calls
+    "save_ml_inputs": False,
+    
+    # Random sub-sampling ratio for the special year mode
+    "special_year_sample": 0.5,
+
+    # Evaluation metric
+    "custom_eval_metric": "auprc",
+
+    # Refit full matrix
+    "refit_with_val_data": False,
+
+    # Training set ratio of PIDs to use from selected year?
+    "special_year_train_ratio": 0.75,
+
+    # Static columns and different types
+    "static_cols": ["static_Age","static_APACHEPatGroup","static_Sex"],
+    "static_cols_raw": ["Age","APACHEPatGroup","Sex",'Emergency', 'Height', 'PatGroup', 'APACHECode', 'Surgical'],
+    "static_cols_raw_mimic": ["Age", "Sex", "Emergency", "Height","Surgical"],
+    "static_cols_without_encode": ["Age","Height","Emergency"],
+    "static_cols_one_hot_encode": ["Surgical","APACHEPatGroup"],
+    "static_cols_one_hot_encode_str": ["Sex"],
+
+    # Unique values of categorical columns
+    "unique_values_cat": { "PatGroup": [113,116,5,115,114,117,-1,118],
+                           "APACHECode": [5,6,3,0,2,10,11,8,7,4],
+                           "Discharge": [2,4],
+                           "Euroscores": [17,16,18,19,20,15,21,22,14,24,23],
+                           "Surgical": [3,0,1],
+                           "Sex": ["M","F","U"] },
+
+    "str_to_int_sex": {"M": 0, "F": 1, "U": 2},
+
+    # Should a univariate test be run?
+    "univariate_test": False,
+
+    # Remove static variables
+    "ablate_static": False,
+
+    # Remove measurement-based features
+    "ablate_measurement": False,
+
+    # Remove multi-resolution features
+    "ablate_multiresolution": False,
+
+    # Remove instability based features
+    "ablate_instability": False,
+
+    # Multi-resolution only short features
+    "multires_only_short": False,
+
+    # Multi-resolution plus med features
+    "multires_plus_med": False,
+
+    # Multi-resolution plus long features
+    "multires_plus_long": False,
+
+    # Multi-resolution plus longest features
+    "multires_plus_longest": False,
+
+    # Multi-resolution only longest features
+    "multires_only_longest": False,
+
+    # Only location summary
+    "summary_loc": False,
+
+    # Only location+trend summary
+    "summary_loc_trend": False,
+
+    # All summary functions
+    "summary_all": False,
+
+    # Class weight (only relevant for multi-class prediction tasks)
+    "class_weight": None,
+
+    # Classification objective (always binary in this project)
+    "clf_objective": "binary",
+
+    # Addition of Bowen's HMM features
+    "add_bowen": False,
+    "only_bowen": False,
+
+}

@@ -1,0 +1,59 @@
+parse_gin_args.gin_configs = {
+
+    # Input paths 
+    
+    # Prediction base dir
+    "pred_path": "../../data/predictions/reduced",
+
+    # Name from ID dict
+    "mid_dict": "../../data/misc/mid2string_v6.npy",
+
+    # ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    # Output paths
+    
+    # Output path for variable list
+    "var_list": "../../data/var_lists/shap_preselect_top30_temporal_2.txt",
+
+    # Output paths for feature list
+    "feat_list": None,
+
+    # -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    # Arguments
+
+    # Number of top variables to extract
+    "nvars": 30,
+
+    # Number of top features to extract
+    "nfeats": 500,
+
+    # Output variables
+    "output_vars": True,
+    "output_feats": False,
+
+    # Task to analyze
+    "task_key": "Label_hirid_merged_24h_deleted_4h_WorseStateFromZeroEVAL0To48Hours_shap_pre_selection_lightgbm",
+
+    # Splits to take into account
+    #"SPLITS": ["temporal_1"],
+    "SPLITS": ["temporal_2"],
+    #"SPLITS": ["temporal_3"],
+    #"SPLITS": ["temporal_4"],
+    #"SPLITS": ["temporal_5"],  
+
+    # Backup name ID dict 
+    "backup_dict": {"vm202": "OUTDialysis/c", "RelDatetime": "Time since admission", "vm201": "Chronic kidney disease?", "vm260": "Periph Hand Re", "Height": "Height",
+                    "APACHEPatGroup": "APACHE Patient Group", "static_Age": "Patient age", "static_Sex": "Patient gender", "vm212": "vm212","Surgical": "Surgical status",
+                    "vm224": "Spontanatmung", "vm275": "Peritoneal dialysis", "vm253": "M-kr arm li", "vm204": "Hematocrit", "vm200": "vm200", "vm244": "Ankleiden", "vm250": "NRS Ruhe0-10",
+                    "vm213": "Compl stat", "vm259": "PeriphHandLi", "vm261": "PeriphFussLi", 
+                    "vm255": "M-Kr Bein li", "vm214": "I:E (s)","vm274": "Dialysis", "vm216": "MV spont Servo","vm234": "Liver state","vm247": "Pubreakt Li","fio2estimated": "FiO2 estimate",
+                    "vm215": "MV Exp", "vm309": "Supplemental FiO2 %", "pm290": "Abführend", "vm249": "PubReaktre", "vm240": "Woher?", "vm227": "Sekret Konsistenz",
+                    "vm306": "Ventilator mode group", "vm308": "Ventilator mode mode", "vm307": "Ventilator mode subgroup","vm223": "Extubation time-point",
+                    "vm313": "Tracheotomy state", "vm319": "RRsp/m", "vm312": "Intubation state", "vm315": "TVs", "vm293": "PEEP(s)", "vm211": "Pressure support", 
+                    "vm226": "Sekret menge", "vm317": "Urine culture", "vm251": "NRS Ans 0-10", "vm256": "M-Kr Bein re","vm242": "Gehen 400m", "vm314": "TV(m)",
+                    "vm294": "PEEP(m)", "vm277": "Urinportion", "vm246": "Pupille li.", "vm318": "Atemfrequenz", "vm276": "OutUrine/H","Emergency": "Emergency status",
+                    "ventstate": "Ventilation status", "vm252": "GCS infl. by drugs", "Age": "Patient age", "Sex": "Gender"}
+
+
+}

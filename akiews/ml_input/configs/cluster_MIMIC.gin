@@ -1,0 +1,45 @@
+parse_gin_args.gin_configs = {
+
+    # ================= INPUT PATHS ======================================================================================================
+
+    # Script to dispatch
+    "compute_script_path": "/cluster/home/mhueser/git/projects/2022/kidnews_public/kidnews/ml_input/save_ml_input.py",
+    
+    # Base GIN config
+    "base_gin_config": "/cluster/home/mhueser/git/projects/2022/kidnews_public/kidnews/ml_input/configs/save_ml_input_MIMIC.gin",
+
+    # ================= OUTPUT PATHS ======================================================================================================
+    
+    # Feature output directory
+    "features_dir": "../../data/ml_input/mimic_features",
+
+    # Logging directory
+    "log_dir": "/cluster/home/mhueser/log_files/icu_score_renal",
+
+    # ================= ARGUMENTS ======================================================================================================
+
+    # Endpoint to use
+    "endpoint": "kidney_extval",
+
+    # Memory to request per job
+    "mbytes_per_job": 128000,
+
+    # Compute time to request per job
+    "hours_per_job": 24,
+
+    # Debugging options
+    "dry_run": False,
+    "debug_mode": False,
+    "preserve_logs": True,
+
+    # Are NAN values expected in input?
+    "missing_values_mode": "finite",
+
+    # Splits to dispatch
+    "SPLIT_SCHEMAS": ["random_1"],
+
+    # Maximum batch to dispatch
+    "BATCH_RANGE": 50
+
+}
+

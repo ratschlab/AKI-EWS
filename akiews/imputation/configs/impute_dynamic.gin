@@ -1,0 +1,98 @@
+
+parse_gin_args.gin_configs = {
+
+    # ================= INPUT PATHS ======================================================================================================
+
+    # Static info to be loaded
+    "static_info_path": "../../data/raw_data/hirid2/static.h5",
+
+    # Typical weight/height dictionary for Bern data
+    "typical_weight_dict_path": "../../data/misc/typical_weight_dict.npy",
+
+    # Dictionary of gender-specific estimated BMIs
+    "median_bmi_dict_path": "../../data/misc/median_bmi_dict.npy",
+
+    # Pre-computed imputation parameters
+    "imputation_param_dict_reduced": "../../data/imputed/imputation_parameters",
+
+    # Input merged data
+    "reduced_merged_path": "/cluster/work/grlab/clinical/hirid2/research/3_merged/v8/reduced_rm_drugoor",
+
+    # Temporal split descriptor to be used
+    "temporal_data_split_binary": "../../data/exp_design/temp_splits_hirid2.pickle",
+
+    # Location of PID batch map for Bern data
+    "pid_batch_map_binary": "../../data/exp_design/hirid2_chunking_100.pickle",
+
+    # Meta-information about HiRID variables
+    "hirid_v8_dict": "../../data/misc/hirid_v8_schema.pickle",
+
+    # ================= OUTPUT PATHS ======================================================================================================
+
+    # Output of imputed data
+    "imputed_reduced_dir": "../../data/imputed/noimpute_hirid2/reduced",
+
+    # Log directory
+    "log_dir": "/cluster/home/mhueser/log_files/icu_score_renal",
+
+    # ================= ARGUMENTS ======================================================================================================
+
+    # Which endpoint should be processed?
+    "endpoint": "kidney",
+
+    # Remove 0s from pharma
+    "remove_redundant_zeros": False,
+
+    # Force infinite filling to have compatibility with Thomas pipeline
+    "force_infinite_filling": True,
+
+    # Custom formulae imputation
+    "custom_formula_imputation": False,
+
+    # Should pharma variables be imputed with zeros?
+    "zero_impute_pharma": False,
+
+    # For which data-set should we run imputation?
+    "dataset": "bern", 
+
+    # Batch index to process
+    "batch_idx": 50,
+
+    # Data-frame keys
+    "patient_id_key": "PatientID",
+    "rel_datetime_key": "RelDatetime",
+    "abs_datetime_key": "AbsDatetime",
+
+    # Static key dict
+    "static_key_dict": {"F": "female", "M": "male", "U": "unknown"},
+    
+    # On which split should we process
+    "split_key": "temporal_1", 
+
+    # Data-set key for imputed data
+    "imputed_dset_id": "/imputed",
+
+    # HDF compression settings
+    "hdf_comp_level": 5,
+    "hdf_comp_alg": "blosc:lz4",
+
+    # Normal value is NAN
+    "impute_normal_value_as_nan": True,
+
+    # Debugging settings
+    "run_mode": "INTERACTIVE",
+    "debug_mode": False,
+
+    # Extended grid outside of first/last HR
+    "extended_grid": False,
+
+    # Imputation grid period
+    "grid_period": 300.0,
+
+    # Nunber of days after which to cut off the grid
+    "max_grid_length_days": 28,
+
+    # Imputation schema to use?
+    "imputation_mode": "forward_filling"
+
+}

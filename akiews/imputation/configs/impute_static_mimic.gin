@@ -1,0 +1,33 @@
+
+parse_gin_args.gin_configs = {
+
+    # ================= INPUT PATHS ======================================================================================================
+
+    # Temporal split descriptor
+    "temporal_data_split_binary_path": "../../data/exp_design/random_splits_mimic.pickle",
+
+    # Static information
+    "static_info_path": "/cluster/work/grlab/clinical/hirid2/research/3_merged/MIMIC-IV/static.h5",
+
+    # ================= OUTPUT PATHS ======================================================================================================
+
+    # Output directory for imputed data
+    "imputed_reduced_path": "../../data/imputed/noimpute_mimic/reduced",
+
+    # ================= ARGUMENTS ======================================================================================================
+
+    # HDF compression options
+    "hdf_comp_level": 5,
+    "hdf_comp_alg": "blosc:lz4",
+
+    # Database to use
+    "database": "mimic",
+
+    # Do not impute, that is leave NAN for missing values in the frame
+    "no_impute": True,
+
+    # Debugging options
+    "debug_mode": False,
+
+    "SPLIT_MODES": ["random_1"]
+}

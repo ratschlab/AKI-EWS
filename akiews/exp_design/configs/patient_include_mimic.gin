@@ -1,0 +1,27 @@
+parse_gin_args.gin_configs = {
+
+    # ================= INPUT PATHS ======================================================================================================
+
+    # Merged data stage
+    "merged_path": "/cluster/work/grlab/clinical/hirid2/research/3_merged/MIMIC-IV/MIMICIV_merged.parquet",
+
+    # Base list of PIDs by Thomas which is valid in all configs
+    "base_list_ep_config_pids": "../../data/endpoints/mimic_endpoints/valid_pid.txt",
+
+    # Endpoint path of the MIMIC-IV database, used to select included PIDs
+    "endpoint_path": "../../data/endpoints/mimic_endpoints",
+
+    # ================= OUTPUT PATHS ======================================================================================================
+
+    # Location to store list with included PIDs
+    "inc_pid_list": "../../data/exp_design/included_pids_mimic.tsv",
+
+    # ================= ARGUMENTS ======================================================================================================
+
+    # Debugging, use only 1 batch
+    "debug_mode": False,
+    
+    # Endpoint to process
+    "endpoint": "renal_extval"
+
+}

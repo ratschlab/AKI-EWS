@@ -1,0 +1,84 @@
+
+parse_gin_args.gin_configs = {
+
+    # ================= INPUT PATHS ======================================================================================================
+
+    # ML input directory
+    "ml_input_dir": "../../data/ml_input/mimic_features",
+
+    # Imputed data directory
+    "imputed_dir": "../../data/imputed/noimpute_mimic",
+
+    # Batch map for data-set
+    "pid_batch_map_path": "../../data/exp_design/mimic_chunking_50.pickle",
+
+    # Temporal split descriptor
+    "temporal_data_split_path": "../../data/exp_design/random_splits_mimic.pickle",
+
+    # Variable encoding directory
+    "varencoding_dict_path": "../../data/misc/meta_varencoding_map_v8.pickle",
+
+    # List of variables to use in case variable set is restricted
+    "var_restrict_path": None,
+    
+    # ================= OUTPUT PATHS ======================================================================================================
+
+    # Output directory to store the H5PY data-sets
+    "output_dir": "../../data/ml_dset/mimic_dset",
+
+    # Logging dir
+    "log_dir": "/cluster/home/mhueser/log_files/icu_score_renal",
+
+    # ================= ARGUMENTS ======================================================================================================
+
+    # Split to process
+    "split_key": "random_1",
+
+    # Debugging options
+    "debug_mode": False,
+    
+    # Endpoint to process
+    "endpoint": "kidney_extval",
+
+    # Write buffer size (how many patients should be written to the file together?)
+    "write_buffer_size": 1000,    
+
+    # PRNG seed
+    "random_state": 2023,
+
+    # Execution mode
+    "run_mode": "INTERACTIVE",
+
+    # Database
+    "database": "mimic",
+
+    # Gender numeric encode
+    "gender_numeric_encode": True,
+
+    # Unify the X and y grids
+    "unify_X_y_grid": True, 
+
+    # Profiling settings
+    "profile_report": False,
+    "systrace_mode": False,
+
+    # Variable restriction
+    "restrict_variables": False,
+
+    # Gender restriction
+    "restrict_gender": None,
+
+    # Subsampling settings
+    "10percent_sample": False,
+    "0.1percent_sample_train": False,
+    "1percent_sample_train": False,
+    "2percent_sample_train": False,
+    "5percent_sample_train": False,
+    "10percent_sample_train": False,
+    "25percent_sample_train": False,
+    "50percent_sample_train": False,
+    "1percent_sample_val": False,
+    "1percent_sample": False, 
+    "verysmall_sample": False
+
+}
