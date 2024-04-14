@@ -92,6 +92,16 @@ Code for testing variable distributions of the merged data.
 * **`utils`**
 Various utility functions used in other modules.
 
+The order in which each component is run is as follows:
+1. preprocessing
+2. exp_design
+3. imputation 
+4. endpoints
+5. labels
+6. ml_input
+7. ml_dset
+8. learning
+9. evaluation/introspection
 
 # License
 
