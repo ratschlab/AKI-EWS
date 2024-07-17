@@ -111,7 +111,7 @@ Physionet.
 
 When using code from this repository, please consider citing
 
-> Lyu, Fan, Hüser et al. "An Empirical Study on KDIGO-Defined Acute Kidney Injury Prediction in the Intensive Care Unit", medRxiv 2024.02.01.24302063.
+> Lyu, Fan, Hüser et al. "An empirical study on KDIGO-defined acute kidney injury prediction in the intensive care unit", Bioinformatics, Volume 40, Issue Supplement_1, July 2024
 
 
 
